@@ -1,19 +1,10 @@
 <?php
 
+use App\Http\Controllers\PinController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/pinspire', [PinController::class, 'index']);
+Route::post('/pinspire/create', [PinController::class, 'create']);
+Route::patch('/pinspire/{id}', [PinController::class, 'edit']);
+Route::delete('/pinspire/delete/{id}', [PinController::class, 'delete']);
