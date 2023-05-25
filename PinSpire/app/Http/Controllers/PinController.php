@@ -9,32 +9,32 @@ use Illuminate\Support\Facades\Storage;
 
 class PinController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum')->only('create', 'edit', 'delete');
+    }
+
     public function index()
     {
         $post = posts::all();
         return ShowPinResource::collection($post);
     }
 
+    public function show($id)
+    {
+        $post = posts::findOrFail($id);
+        return new ShowPinResource($post);
+    }
+
     public function create(Request $request)
     {
         $request->validate([
+            'image'         => 'required',
             'title'         => 'required',
             'description'   => 'required',
             'author'        => 'required'
         ]);
-        if($request->file) {
-
-            $validated = $request->validate([
-                'file' => 'mimes:jpg,jpeg,png|max:100000'
-            ]);
-
-            $filename = $this->generateRandomString();
-            $extension = $request->file->extension();
-            
-            $path = Storage::putFileAs('image', $request->file, $filename.'.'.$extension);
-        }
-
-        $request['image'] = $filename.'.'.$extension;
 
         $post = posts::create($request->all());
         return new ShowPinResource($post);
