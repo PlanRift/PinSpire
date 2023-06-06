@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProfileResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,9 +44,6 @@ class AuthController extends Controller
     public function profile()
     {
         $user = Auth::user();
-        return response()->json([
-            'id'        =>$user->id,
-            'username'  =>$user->username,
-        ]);
+        return new ProfileResource($user);
     }
 }

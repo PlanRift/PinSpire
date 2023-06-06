@@ -19,7 +19,8 @@ class ShowPinResource extends JsonResource
             'image'         => $this->image,
             'title'         => $this->title,
             'description'   => $this->description,
-            'author'        => $this->author
+            'writer'        => $this->whenLoaded('writer'),
+            'created_at'    => date_format($this->created_at, "Y/m/d H:i")
         ];
     }
 }

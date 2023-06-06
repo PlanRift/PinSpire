@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PinController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -14,3 +15,6 @@ Route::delete('/pinspire/delete/{id}', [PinController::class, 'delete']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/profile', [AuthController::class, 'profile']);
+
+Route::post('/like/{id}', [LikeController::class, 'like']);
+Route::delete('/unlike/{id}', [LikeController::class, 'unlike']);
