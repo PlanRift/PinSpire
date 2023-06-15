@@ -19,4 +19,9 @@ class comments extends Model
     {
         return $this->belongsTo(posts::class, 'author', 'id');
     }
+
+    public function commentator(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'author', 'id');
+    }
 }

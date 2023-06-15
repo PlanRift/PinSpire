@@ -29,7 +29,7 @@ class posts extends Model
 
     public function comments(): HasMany
     {
-        return $this->HasMany(comments::class, 'comments_id', 'id');
+        return $this->HasMany(comments::class, 'post_id', 'id');
     }
 }
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PinController;
 use Illuminate\Http\Request;
@@ -18,3 +19,7 @@ Route::get('/profile', [AuthController::class, 'profile']);
 
 Route::post('/like/{id}', [LikeController::class, 'like']);
 Route::delete('/unlike/{id}', [LikeController::class, 'unlike']);
+
+Route::post('/comment', [CommentsController::class, 'comment']);
+Route::patch('/comment/{id}', [CommentsController::class, 'edit']);
+Route::delete('/comment/{id}', [CommentsController::class, 'delete']);
