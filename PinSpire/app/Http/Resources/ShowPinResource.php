@@ -19,7 +19,7 @@ class ShowPinResource extends JsonResource
             'image'         => $this->image,
             'title'         => $this->title,
             'description'   => $this->description,
-            'writer'        => $this->whenLoaded('writer'),
+            'writer'        => $this->writer['username'],
             'likes'         => $this->likes->count(),
             'comments'      => [
                 'total' => $this->comments->count(),

@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class commentsResource extends JsonResource
+class likeResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,10 +15,9 @@ class commentsResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'                => $this->id,
-            'comments_content'  => $this->comments_content,
-            'commentator'       => $this->commentator['username'],
-            'created_at'        => date_format($this->created_at, "Y/m/d H:i")
+            'post' => $this->post_id,
+            'title' => $this->LikedPost['title'],
+            'description' => $this->LikedPost['description'],
         ];
     }
 }

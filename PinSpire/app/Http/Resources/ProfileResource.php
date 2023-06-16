@@ -18,6 +18,10 @@ class ProfileResource extends JsonResource
         return [
             'id' => $this->id,
             'username' => $this->username,
+            'Likes'      => [
+                'total' => $this->likes->count(),
+                'Liked Posts' => likeResource::collection($this->likedPosts),
+            ],
         ];
     }
 }
